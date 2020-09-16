@@ -50,7 +50,7 @@ for index, row in user650.sort_values(by='cash_flow_update_date').iterrows():
 
 plt.title('Monthly Spending Over Time For User 650')
 plt.xticks(rotation=30, ha='right')
-fig.savefig('monthly_spending_user650.png');
+fig.savefig('images\monthly_spending_user650.png');
 
 
 def track_user_spending(userID, outdir=None):
@@ -65,7 +65,7 @@ def track_user_spending(userID, outdir=None):
     '''
     
     # Read the data into an DataFrame object, then filter on user 650
-    user_cfs = users_spending_inc = pd.read_sql(cash_flow_query, eng)
+    user_cfs = pd.read_sql(cash_flow_query, eng)
     user650 = user_cfs[user_cfs['users_id'] == userID][['cash_flow_update_date', 'average_monthly_spending']]
     user650.sort_values(by='cash_flow_update_date')
     
@@ -80,7 +80,7 @@ def track_user_spending(userID, outdir=None):
     plt.title('Monthly Spending Over Time For User {0}'.format(userID))
     plt.xticks(rotation=30, ha='right')
     plt.show()
-    fig.savefig('\images\monthly_spending_user{0}.png'.format(userID));    
+    fig.savefig('images\monthly_spending_user{0}.png'.format(userID));    
     fig.clf()
     plt.close(fig)
 
@@ -113,7 +113,7 @@ sns.distplot(males['spending_to_income'], hist=False, rug=True, label='males', a
 axes[0].set_title('Percent Of Income Spent Per Month By Gender')
 sns.distplot(females['spending_to_income'], hist=False, rug=True, label='females', ax=axes[1])
 axes[1].set_title('Percent Of Income Spent Per Month By Gender ')
-plt.savefig('\images\spending_to_income_by_gender.png')
+plt.savefig('images\spending_to_income_by_gender.png')
 
 
 
