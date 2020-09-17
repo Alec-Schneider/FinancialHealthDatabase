@@ -162,3 +162,13 @@ select * from current_accounts where account_id = (select top 1
 														account_id 
 													from accounts 
 													order by account_id desc)
+
+
+exec create_account @users_id=3, @acc_type_name='Brokerage', @bal=1500
+
+select top 2 * from accounts order by account_id desc
+
+select * from current_accounts where account_id in (select top 2 
+														account_id 
+													from accounts 
+													order by account_id desc)
