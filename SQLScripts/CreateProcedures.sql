@@ -172,3 +172,32 @@ select * from current_accounts where account_id in (select top 2
 														account_id 
 													from accounts 
 													order by account_id desc)
+
+
+exec create_account @users_id=5, @acc_type_name='HELOC', @bal=3500, @rate=3.86, @rate_type='Fixed', @term=36
+
+select top 3 * from accounts order by account_id desc
+
+select 
+	* 
+from 
+	current_accounts 
+where account_id in (select top 3
+							account_id 
+						from accounts 
+						order by account_id desc)
+
+
+-- Check results after entering an account through the flash app via python
+select top 4 * from accounts order by account_id desc
+
+select 
+	* 
+from 
+	current_accounts 
+where account_id in (select top 4
+							account_id 
+						from accounts 
+						order by account_id desc)
+
+select * from accounts where account_id = 4963

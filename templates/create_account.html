@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Home Page {%  endblock %}
+{% block content %}
+<body>
+    <form method="POST" action="{{url_for('create_account')}}">
+        <label for="users_id">User ID:</label>
+        <input type="number" name="users_id" placeholder="Enter user id">
+        <br>
+        <label for="acct_type">Account Type:</label>
+        <input type="text" name="acct_type">
+        <br>
+        <label for="balance">Enter account balance:</label>
+        <input type="number" name="balance" placeholder="Enter balance" min=0 step="0.01" pattern="^\d*(\.\d{0,2})?$">
+        <br>
+        <label for="rate">If applicable, enter annual interest rate:</label>
+        <input type=number name="rate" step="0.01"pattern="^\d*(\.\d{0,2})?$">
+        <br>
+        <label for="rate_type">If applicable, enter interest rate type:</label>
+        <select name="rate_type">
+            <option>None</option>
+            <option value="Fixed">Fixed</option>
+            <option value="Float">Float</option>
+        </select>
+        <br>
+        <label for="pay_term">If applicable, enter the amount of monthly payments</label>
+        <input type="number" min=0 name="pay_term">
+        <br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+{% endblock %}
