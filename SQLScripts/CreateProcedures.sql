@@ -189,15 +189,24 @@ where account_id in (select top 3
 
 
 -- Check results after entering an account through the flash app via python
-select top 4 * from accounts order by account_id desc
+select top 7 * from accounts order by account_id desc
 
 select 
 	* 
 from 
 	current_accounts 
-where account_id in (select top 4
+where account_id in (select top 7
 							account_id 
 						from accounts 
 						order by account_id desc)
 
-select * from accounts where account_id = 4963
+select * from account_type
+
+select 
+	account_updates.*,
+	account_type_name
+from account_updates
+left join
+	accounts on account_updates.account_id = accounts.account_id
+left join
+	account_type on accounts.account_type_id = account_type.account_type_id

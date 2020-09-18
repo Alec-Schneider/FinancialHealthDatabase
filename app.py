@@ -42,16 +42,38 @@ def create_account():
                                         'rate_type':rate_type,
                                         'term': pay_term
                                         })
-        _db.session.execute(sqlalc.text('EXEC create_account :users_id, :acct_type, :bal, :rate, :rate_type, :term'), 
-                                        {
-                                        'users_id': users_id,
-                                        'acct_type': acct_type,
-                                        'bal': balance,
-                                        'rate': rate,
-                                        'rate_type':rate_type,
-                                        'term': pay_term
-                                        }
-                                        )
+        if acct_type.lower() in ('mortgage', 'heloc', 'student', 'personal', 'auto' ):
+
+            _db.session.execute(sqlalc.text('EXEC create_account @users_id=:users_id,  @acc_type_name=:acct_type, @bal=:bal, \
+                                            @rate=:rate, @rate_type=:rate_type, @term=:term'), 
+                                            {
+                                            'users_id': users_id,
+                                            'acct_type': acct_type,
+                                            'bal': balance,
+                                            'rate': rate,
+                                            'rate_type':rate_type,
+                                            'term': pay_term
+                                            }
+                                            )
+        elif acct_type.lower() in ('savings', 'certificate of deposit', 'credit card'):
+            _db.session.execute(sqlalc.text('EXEC create_account @users_id=:users_id,  @acc_type_name=:acct_type, @bal=:bal, \
+                                            @rate=:rate, @rate_type=:rate_type'), 
+                                            {
+                                            'users_id': users_id,
+                                            'acct_type': acct_type,
+                                            'bal': balance,
+                                            'rate': rate,
+                                            'rate_type':rate_type
+                                            }
+                                            )
+        elif acct_type.lower() in ('checking', '401k', 'ira', 'roth ira', 'pension', 'brokerage'):
+            _db.session.execute(sqlalc.text('EXEC create_account @users_id=:users_id,  @acc_type_name=:acct_type, @bal=:bal'), 
+                                            {
+                                            'users_id': users_id,
+                                            'acct_type': acct_type,
+                                            'bal': balance
+                                            }
+                                            )
         _db.session.commit()
     return render_template('create_account.html')
 
