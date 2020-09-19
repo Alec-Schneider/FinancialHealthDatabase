@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Home Page {%  endblock %}
+{% block content %}
+<body>
+    <form method="POST" action="{{url_for('create_user')}}">
+        <label for="first_name">First name:</label>
+        <input type=text name="first_name">
+        <br>
+        <label for="last_name">Last name:</label>
+        <input type=text name="last_name">    
+        <br>
+        <label for="middle_name">Middle name (optional):</label>
+        <input type=text name="middle_name">
+        <br>
+        <label for="dob">Date of birth (mm/dd/yyyy):</label>
+        <input type=text name="dob">
+        <br>
+        <label for="social_security">Social security (xxx-xx-xxxx):</label>
+        <input type=text name="social_security">
+        <br>
+        <label for="email">Email address:</label>
+        <input type=text name="email">
+        <br>
+        <label for="gender">Gender:</label>
+        <select name="gender">
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+            <option value="X">Non-binary</option>
+        </select>
+    </form>
+</body>
+{% endblock %}

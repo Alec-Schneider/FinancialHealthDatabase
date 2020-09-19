@@ -24,8 +24,16 @@ def user_login():
     return render_template('user_login.html')
 
 
+@app.route('/create_user')
+def create_user():
+    pass
+
+
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
+    '''
+    
+    '''
     if request.form:
         print(request.form)
         users_id = request.form.get("users_id", type=int)
