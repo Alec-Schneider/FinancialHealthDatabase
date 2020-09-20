@@ -24,9 +24,32 @@ def user_login():
     return render_template('user_login.html')
 
 
-@app.route('/create_user')
+@app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
-    pass
+    if request.form:
+        print(request.form)
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        middle_name = request.form.get('middle_name')
+        dob = request.form.get('dob')
+        social = request.form.get('social_security')
+        email = request.form.get('email')
+        gender = request.form.get('gender')
+        password = request.form.get('password')
+        _db.session.execute(sqlalc.text('EXEC new_user @fname=:first, @lname=:last, @mname=:mid, \
+                                        @dob=:dob, @ss=:ss, @email=:email, @gender=:gender, @pass=:password'),
+                                        {
+                                            'first': first_name,
+                                            'last': last_name,
+                                            'mid': middle_name,
+                                            'dob': dob,
+                                            'ss': social,
+                                            'email': email,
+                                            'gender': gender,
+                                            'password': password
+                                        })
+        _db.session.commit()
+    return render_template('create_user.html')
 
 
 @app.route('/create_account', methods=['GET', 'POST'])

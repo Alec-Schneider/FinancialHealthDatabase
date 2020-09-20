@@ -37,7 +37,7 @@ go
 -- Create procedure to update accounts
 create procedure update_account(@acct_id int, @bal decimal(9,2), @rate decimal(4,2) = Null, @rate_type varchar(8) = Null, 
 								@term int = Null)
-as
+as	
 begin
 	-- update the information provided
 	insert into account_updates
@@ -103,11 +103,11 @@ select top 5 * from user_login
 
 exec update_password 1, icecold23
 
-select top 5 * from user_login
+select * from user_login where users_id = 1
 go
 
 
--- create an account 
+-- create an account for an existing user
 create procedure create_account(@users_id int, @acc_type_name varchar(30), @bal decimal(9,2), @rate decimal(4,2) = Null, 
 								@rate_type varchar(8) = Null, @term int = Null)
 as
@@ -188,14 +188,14 @@ where account_id in (select top 3
 						order by account_id desc)
 
 
--- Check results after entering an account through the flash app via python
-select top 7 * from accounts order by account_id desc
+-- Check results after entering an account through the flask based app via python
+select top 1 * from accounts order by account_id desc
 
 select 
 	* 
 from 
 	current_accounts 
-where account_id in (select top 7
+where account_id in (select top 1
 							account_id 
 						from accounts 
 						order by account_id desc)
@@ -210,3 +210,9 @@ left join
 	accounts on account_updates.account_id = accounts.account_id
 left join
 	account_type on accounts.account_type_id = account_type.account_type_id
+
+
+-- Check results after creting a user through the flask based app via python
+select top 1 * from users order by users_id desc
+
+select * from user_login where users_id = (select top 1 users_id from users order by users_id desc)

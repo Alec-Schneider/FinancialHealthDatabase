@@ -89,4 +89,4 @@ select
 	dbo.spend_ratio(users_id) as spending_to_income_percent
 from
 	users
-order by spending_to_income_percent desc
+order by spending_to_income_percent desc	
