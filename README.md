@@ -19,5 +19,11 @@ Aim of the project is to build a database to:
  	* What is my debt to bank account balance ratio?
  	* How much interest am I paying on my debt every year?
 
-
-May create a website, using Flask. **TBD**
+Folder and File Description:
+- data/: fake data created to be inserted into the database for testing purposes
+- images/: screenshots and plots taken for presentation purposes
+- SQLScripts/: SQL code used to create the database, insert the data, and add Views, Functions, etc.,
+- templates:/: html code for the Flask website
+- app.py: Python script used to run Flask website
+- database_analysis.ipynb: Jupyter notebook for analysis
+- analysis_script.py: Connect to SQL database via SQLalchemy, query database, and answer User questions 
