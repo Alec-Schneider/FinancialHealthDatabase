@@ -20,10 +20,10 @@ Aim of the project is to build a database to:
  	* How much interest am I paying on my debt every year?
 
 Folder and File Description:
-- data/: fake data created to be inserted into the database for testing purposes
+- data/: fake data created to be inserted into the database for testing purposes. Microsoft Excel is required to view.
 - images/: screenshots and plots taken for presentation purposes
-- SQLScripts/: SQL code used to create the database, insert the data, and add Views, Functions, etc.,
-- templates:/: html code for the Flask website
-- app.py: Python script used to run Flask website
-- database_analysis.ipynb: Jupyter notebook for analysis
-- analysis_script.py: Connect to SQL database via SQLalchemy, query database, and answer User questions 
+- SQLScripts/: SQL code used to create the database, insert the data, and add Views, Functions, etc., These files will require Microsoft SQL Server to be used.
+- templates:/: html code for the Flask website. Requires a text editor to view and Flask to run.
+- app.py: Python script used to run Flask website. Require Python and Flask library.
+- database_analysis.ipynb: Jupyter notebook for analysis. Requires Python and Jupyter installed.
+- analysis_script.py: Connect to SQL database via SQLalchemy, query database, and answer User questions. Require Python and SQLalchemy library. 
